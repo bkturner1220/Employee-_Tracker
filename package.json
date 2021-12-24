@@ -1,0 +1,41 @@
+{
+  "name": "employees_tracker",
+  "version": "1.0.0",
+  "description": "A command line application to track employees, departments, and roles",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --input-type=module server.js",
+    "watch": "nodemon server.js",
+    "seed": "node dbData.js && node seedData.js",
+    "db:check": "node checkDB.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkturner1220/Employee-_Tracker.git"
+  },
+  "keywords": [
+    "Employee",
+    "Tracker"
+  ],
+  "author": "Brian Turner",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/bkturner1220/Employee-_Tracker/issues"
+  },
+  "homepage": "https://github.com/bkturner1220/Employee-_Tracker#readme",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "cli-progress": "^3.9.1",
+    "console.table": "^0.10.0",
+    "dotenv": "^10.0.0",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.12.0-beta.3",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.12"
+  }
+}
