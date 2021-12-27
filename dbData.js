@@ -1,7 +1,8 @@
-const mysql = require('mysql2/promise');
-require('dotenv').config();
+const mysql = require('mysql');
+const chalk = require("chalk");
+const dbConfig = require('./config/connection.js')
+const connection = dbConfig.connection
 const log = console.log;
-
 
 // grab database name from employee_db
 const DB_NAME = process.env.DB_NAME;
@@ -14,37 +15,28 @@ const employeeTables = "CREATE TABLE employee (id INTEGER AUTO_INCREMENT PRIMARY
 
 
 const dbData = () => {
-// make mysql connection to database with authentication credentials
-mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user     : process.env.DB_USER,
-    password : process.env.DB_PASSWORD,
 
-// when connection is successful .then
-}).then( connection => {
-    log(`|${DB_NAME} database connected|`);
-    log(`|Checking if ${DB_NAME} exist|`);
+    log(chalk.whiteBright.bold(`|${DB_NAME} database connected|`));
+    log(chalk.whiteBright.bold(`|Checking if ${DB_NAME} exist|`));
 
     connection.query(`DROP DATABASE IF EXISTS ${DB_NAME}`),
-      log(`|Dropping ${DB_NAME} database if exists|`);
+      log(chalk.whiteBright.bold(`|Dropping ${DB_NAME} database if exists|`));
 
     connection.query(`CREATE DATABASE ${DB_NAME};`),
-      log(`|Creating ${DB_NAME} database|`);
+      log(chalk.whiteBright.bold(`|Creating ${DB_NAME} database|`));
 
     connection.query(`USE ${DB_NAME}`)
     connection.query(departmentTables),
-      log('|Creating department tables|');
+      log(chalk.whiteBright.bold('|Creating department tables|'));
 
     connection.query(roleTables),
-      log('|Creating role tables|');
+      log(chalk.whiteBright.bold('|Creating role tables|'));
 
-    connection.query(employeeTables).then((res) => {
-      log('|Creating employee tables|');
-      log(`|${DB_NAME} database tables and values created successfully|`);
-      log(`|${DB_NAME} database is now ready for seeding|`);
-      })
-  })
-}
-
+    connection.query(employeeTables),
+      log(chalk.whiteBright.bold('|Creating employee tables|'));
+      log(chalk.whiteBright.bold(`|${DB_NAME} database tables and values created successfully|`));
+      log(chalk.whiteBright.bold(`|${DB_NAME} database is now ready for seeding|`));
+      process.exit(0);
+      }
+  
 module.exports = dbData;
