@@ -1,7 +1,7 @@
+const mysql = require('mysql2/promise');
 const chalk = require("chalk");
 require('dotenv').config();
-const dbConfig = require('./config/connection.js')
-const connection = dbConfig.connection
+
 const log = console.log;
 
 // grab database name from employee_db
@@ -15,6 +15,16 @@ const employeeValues = "INSERT INTO employee (first_name, last_name, role_id, ma
 
 
 const seedData = () => {
+// make mysql connection to database with authentication credentials
+mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+
+
+// when connection is successful .then
+}).then( connection => {
 
   log(chalk.whiteBright.bold(`|Checking if ${DB_NAME} database exists|`));
 
@@ -24,10 +34,13 @@ const seedData = () => {
     
     connection.query(roleValues),
       log(chalk.whiteBright.bold('|Seeding role data|'));
-    connection.query(employeeValues),
+    connection.query(employeeValues).then((res) => {
         log(chalk.whiteBright.bold('|Seeding employee data|'));
         log(chalk.whiteBright.bold(`|All tables and values have been entered into ${DB_NAME} successfully|`));
         process.exit(0);
-    }
-  
+
+    })
+})
+}
+
 module.exports = seedData;

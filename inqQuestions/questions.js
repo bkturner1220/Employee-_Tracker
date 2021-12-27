@@ -4,6 +4,10 @@ const connection = dbConfig.connection
 const chalk = require("chalk");
 const cTable = console.table
 const log = console.log;
+require('dotenv').config();
+
+// grab database name from employee_db
+const DB_NAME = process.env.DB_NAME;
 
 const choice0 = chalk.redBright.bold("Departments");
 const choice1 = chalk.blueBright.bold("Managers");
@@ -14,6 +18,7 @@ const choice4 = chalk.whiteBright.bold("Exit");
 
 
 const startApp = () => {
+    connection.query(`USE ${DB_NAME}`)
      inquirer.prompt ([
         {
             type:"list",
@@ -77,6 +82,7 @@ function viewManagers() {
 }
     function viewEmployees() {
         const request = "SELECT employee.first_name, employee.last_name, role.title FROM employee, role WHERE employee.id = role.id";
+        // connection.query('USE employee_db')
         connection.query(request, function(err, res) {
           if (err) throw err;
           console.log("Viewing All Employees");

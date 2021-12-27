@@ -1,7 +1,7 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 const chalk = require("chalk");
-const dbConfig = require('./config/connection.js')
-const connection = dbConfig.connection
+require('dotenv').config();
+
 const log = console.log;
 
 // grab database name from employee_db
@@ -15,7 +15,15 @@ const employeeTables = "CREATE TABLE employee (id INTEGER AUTO_INCREMENT PRIMARY
 
 
 const dbData = () => {
+// make mysql connection to database with authentication credentials
+mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
 
+// when connection is successful .then
+}).then( connection => {
     log(chalk.whiteBright.bold(`|${DB_NAME} database connected|`));
     log(chalk.whiteBright.bold(`|Checking if ${DB_NAME} exist|`));
 
@@ -32,11 +40,14 @@ const dbData = () => {
     connection.query(roleTables),
       log(chalk.whiteBright.bold('|Creating role tables|'));
 
-    connection.query(employeeTables),
+    connection.query(employeeTables).then((res) => {
       log(chalk.whiteBright.bold('|Creating employee tables|'));
       log(chalk.whiteBright.bold(`|${DB_NAME} database tables and values created successfully|`));
       log(chalk.whiteBright.bold(`|${DB_NAME} database is now ready for seeding|`));
       process.exit(0);
-      }
-  
+
+      })
+    })
+  }
+
 module.exports = dbData;
