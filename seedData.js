@@ -9,9 +9,9 @@ const DB_NAME = process.env.DB_NAME;
 // create departartment values within employee_db
 const departmentValues = "INSERT INTO department (department_name) VALUES ('Customer Service'), ('Development'), ('SEO'), ('Sales')";
 // create role values within employee_db
-const roleValues = "INSERT INTO role (title, salary, department_id) VALUES ('Sales Lead', 45000, 4), ('Salesperson', 38000, 1),('SEO Tech', 80000, 3), ('Lead Developer', 150000, 2), ('Customer Service Rep.', 35000, 1), ('Development Manager', 160000, 2),('SEO Tech Trainee', 55000, 3), ('SEO Lead', 14000, 4), ('Customer Service Manager', 80000, 1)";
+const roleValues = "INSERT INTO role (title, salary, department_id) VALUES ('SEO Tech', 45000, 4), ('Sales Manager', 68000, 4),('Sales Lead', 80000, 3), ('Lead Developer', 150000, 2), ('Customer Service Rep.', 35000, 1), ('Development Manager', 160000, 2),('SEO Tech Trainee', 55000, 3), ('SEO Lead', 14000, 3), ('Customer Service Manager', 80000, 1)";
 // create employee values within employee_db
-const employeeValues = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Johnny', 'Walker', 1, NULL), ('Roger', 'Stone', 2, NULL),('Ashley', 'Meldrum', 3, NULL),('Donald', 'Trump', 4, NULL),('JoAnna', 'Smith', 5, NULL),('Amber', 'Maguire', 6, 2),('Billy', 'Bob', 7, NULL),('Tom', 'Hanks', 8, 5)";
+const employeeValues = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Johnny', 'Walker', 1, NULL), ('Roger', 'Stone', 2, NULL),('Ashley', 'Meldrum', 3, 2),('Donald', 'Trump', 8, NULL),('JoAnna', 'Smith', 5, NULL),('Amber', 'Maguire', 6, NULL),('Billy', 'Bob', 7, NULL),('Tom', 'Hanks', 4, 6)";
 
 
 const seedData = () => {
