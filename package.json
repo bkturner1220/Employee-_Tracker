@@ -5,10 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.mjs",
-    "watch": "nodemon server.mjs",
-    "seed": "node dbData.mjs && node seedData.mjs",
-    "db:check": "node checkDB.mjs"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
