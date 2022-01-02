@@ -39,7 +39,12 @@
    ![alt text](./assets/img/12-sql.png)
    
 ## Demo Video <a name='demo'></a>
-   ![alt text]()
+   <a href="https://youtu.be/u9HyCvr-b9k" target="_blank">----==== YouTube.com Video Link (with audio) ====----</a>
+   <br>
+   <br>
+
+   ![alt text](./assets/demo/employee_tracker.gif)
+
         
 ## Github Pages Link <a name='pages'></a>
    <a href="https://bkturner1220.github.io/Employee_Tracker" target="_blank">https://bkturner1220.github.io/Employee_Tracker</a>
